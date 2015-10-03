@@ -8,9 +8,17 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var mongoose = require('mongoose');
+
 var app = express();
 
+// Mongoose Connection
+require('./models/Posts');
+require('./models/Comments');
+mongoose.connect('mongodb://localhost/news');
+
 // view engine setup
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
